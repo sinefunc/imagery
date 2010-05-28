@@ -5,12 +5,15 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "imagery"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Image resizing without all the bloat}
+    gem.description = %Q{Uses ImageMagick directly underneath. Nuff said.}
     gem.email = "cyx.ucron@gmail.com"
-    gem.homepage = "http://github.com/cyx/imagery"
+    gem.homepage = "http://github.com/sinefunc/imagery"
     gem.authors = ["Cyril David"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.add_dependency "escape", ">= 0"
+    gem.add_development_dependency "contest", ">= 0"
+    gem.add_development_dependency "aws-s3", ">= 0"
+    gem.add_development_dependency "mocha", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
