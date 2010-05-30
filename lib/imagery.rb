@@ -2,7 +2,7 @@ require 'escape'
 require 'fileutils'
 
 module Imagery
-  VERSION = "0.0.1"
+  VERSION = "0.0.2"
   
   autoload :Model,  "imagery/model"
   autoload :Faking, "imagery/faking"
@@ -15,18 +15,4 @@ module Imagery
     Model.new(*args, &blk)
   end
   module_function :new
-  
-  # Syntactic sugar for Imagery::Model::faked
-  # @see Imagery::Model::faked for details
-  def faked(&blk)
-    Model.faked(&blk)
-  end
-  module_function :faked
-
-  # Syntactic sugar for Imagery::Model::real
-  # @see Imagery::Model::real for details
-  def real(&blk)
-    Model.real(&blk) 
-  end
-  module_function :real
 end

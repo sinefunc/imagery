@@ -10,7 +10,7 @@ module Imagery
       if ENV["REAL_IMAGERY"]
         Imagery::Model.real { yield true }
       else
-        Imagery::Model.faking { yield false }
+        Imagery::Model.faked { yield false }
       end
     end
   end
