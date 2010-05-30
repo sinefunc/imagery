@@ -1,6 +1,8 @@
 Imagery
 =======
 
+(See documentation at [http://labs.sinefunc.com/imagery/doc](http://labs.sinefunc.com/imagery/doc))
+
 ## Image manipulation should be simple. It should be customizable. It should allow for flexibility. Imagery attempts to solve these.
 
 ### Imagery favors:
