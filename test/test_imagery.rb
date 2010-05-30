@@ -19,14 +19,14 @@ class TestImagery < Test::Unit::TestCase
   test "root_path when no ROOT_DIR" do
     imagery = Imagery.new(Photo.new(1001))
     imagery.root = '/'
-    assert_equal "/public/system/photo/1001/tmp", imagery.tmp
+    assert_equal "/public/system/photo/1001/tmp", imagery.send(:tmp)
   end
 
   test "root_path when ROOT_DIR defined on imagery" do
     Imagery::ROOT_DIR = '/root/dir'
 
     imagery = Imagery.new(Photo.new(1001))
-    assert_equal "/root/dir/public/system/photo/1001/tmp", imagery.tmp
+    assert_equal "/root/dir/public/system/photo/1001/tmp", imagery.send(:tmp)
 
     Imagery.send :remove_const, :ROOT_DIR
   end
@@ -35,7 +35,7 @@ class TestImagery < Test::Unit::TestCase
     Object::ROOT_DIR = '/root/dir'
 
     imagery = Imagery.new(Photo.new(1001))
-    assert_equal "/root/dir/public/system/photo/1001/tmp", imagery.tmp
+    assert_equal "/root/dir/public/system/photo/1001/tmp", imagery.send(:tmp)
 
     Object.send :remove_const, :ROOT_DIR
   end

@@ -9,8 +9,45 @@ module Imagery
     end
     
     S3_HOST = "http://s3.amazonaws.com"
-
-    def url(size = :original)
+  
+    # Returns a url publicly accessible. If a distribution domain is set,
+    # then the url will be based on that.
+    #
+    # @example
+    #   
+    #   class Imagery::Model
+    #     include Imagery::S3
+    #
+    #     self.s3_bucket = 'bucket-name'
+    #   end
+    #   
+    #   Photo = Class.new(Struct.new(:id))
+    #   i = Imagery.new(Photo.new(1001))
+    #
+    #   i.url == 'http://s3.amazonaws.com/bucket-name/photo/1001/original.png'
+    #   # => true
+    #
+    #   Imagery::Model.s3_distribution_domain = 'assets.site.com'
+    #   i.url == 'http://assets.site.com/photo/1001/original.png'
+    #   # => true
+    #
+    #   # You may also subclass this of course since it's just a ruby object
+    #   # and configure them differently as needed.
+    #
+    #   class CloudFront < Imagery::Model
+    #     include Imagery::S3
+    #     self.s3_bucket = 'cloudfront'
+    #     self.s3_distribution_domain = 'assets.site.com'
+    #   end
+    #
+    #   class RegularS3 < Imagery::Model
+    #     include Imagery::S3
+    #     self.s3_bucket = 'cloudfront'
+    #   end
+    #
+    # @param [Symbol] size the preferred size you want for the url.
+    # @return [String] the size specific url.
+    def url(size = self.default_size)
       if domain = self.class.s3_distribution_domain
         [domain, namespace, key, filename(size)].join('/')
       else
@@ -18,6 +55,8 @@ module Imagery
       end
     end
 
+    # In addition to saving the files and resizing them locally, uploads all
+    # the different sizes to amazon S3.
     def save(io)
       if super
         s3_object_keys.each do |key, size|
@@ -31,6 +70,8 @@ module Imagery
       end
     end
 
+    # Deletes all the files related to this Imagery instance and also
+    # all the S3 keys.
     def delete
       super
       s3_object_keys.each do |key, size|
@@ -46,11 +87,36 @@ module Imagery
     end
 
     module Gateway
+      # A wrapper for AWS::S3::S3Object.store. Basically auto-connects
+      # using the environment vars.
+      #
+      # @example
+      #   
+      #   AWS::S3::Base.connected?
+      #   # => false
+      #
+      #   Imagery::S3::Gateway.store(
+      #     'avatar', File.open('avatar.jpg'), 'bucket'
+      #   )
+      #   AWS::S3::Base.connected?
+      #   # => true
+      #       
       def store(*args)
         execute(:store, *args)
       end
       module_function :store
       
+      # A wrapper for AWS::S3::S3Object.delete. Basically auto-connects
+      # using the environment vars.
+      #
+      # @example
+      #   
+      #   AWS::S3::Base.connected?
+      #   # => false
+      #
+      #   Imagery::S3::Gateway.delete('avatar', 'bucket')
+      #   AWS::S3::Base.connected?
+      #   # => true
       def delete(*args)
         execute(:delete, *args)
       end
