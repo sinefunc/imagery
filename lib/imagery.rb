@@ -17,4 +17,9 @@ module Imagery
     Model.faked(&blk)
   end
   module_function :faked
+
+  def real(&blk)
+    Model.real(&blk) 
+  end
+  module_function :real
 end
