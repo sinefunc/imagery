@@ -19,6 +19,13 @@ module Imagery
       ensure
         @mode = @omode
       end
+
+      def real
+        @omode, @mode = @mode, nil
+        yield
+      ensure
+        @mode = @omode
+      end
     end
 
     def save(io)
