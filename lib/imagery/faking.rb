@@ -33,5 +33,11 @@ module Imagery
 
       super
     end
+
+    def delete
+      return true if self.class.mode == :fake
+
+      super
+    end
   end
 end
