@@ -213,8 +213,5 @@ module Imagery
     def root_path(*args)
       File.join(root, *args)
     end
-  
-    # Let's just assume everybody wants this functionality
-    include Missing
   end
 end

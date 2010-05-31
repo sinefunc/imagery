@@ -1,15 +1,15 @@
 module Imagery
   module Missing
-    def missing=(missing)
-      @missing = missing
+    def existing=(existing)
+      @existing = existing
     end
 
-    def missing
-      @missing
+    def existing
+      @existing
     end
 
     def url(size = self.default_size)
-      if missing 
+      if existing.to_s.empty?
         return ['', 'missing', namespace, filename(size)].join('/')
       else
         super
