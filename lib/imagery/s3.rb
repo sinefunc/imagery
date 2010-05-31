@@ -3,11 +3,37 @@ require 'aws/s3'
 module Imagery
   module S3
     def self.included(base)
+      base.extend Configs
       class << base
-        attr_accessor :s3_bucket, :s3_distribution_domain
+        attr_writer :s3_bucket, :s3_distribution_domain
       end
     end
-    
+
+    module Configs
+      def s3_bucket(bucket = nil)
+        @s3_bucket = bucket  if bucket
+        @s3_bucket || raise(UndefinedBucket, BUCKET_ERROR_MSG)
+      end
+
+      BUCKET_ERROR_MSG = (<<-MSG).gsub(/^ {6}/, '')
+
+      You need to define a bucket name. Example:
+
+      class Imagery::Model
+        include Imagery::S3
+
+        s3_bucket 'my-bucket-name'
+      end
+      MSG
+
+      def s3_distribution_domain(domain = nil)
+        @s3_distribution_domain = domain  if domain
+        @s3_distribution_domain
+      end
+    end
+  
+    UndefinedBucket = Class.new(StandardError)
+
     S3_HOST = "http://s3.amazonaws.com"
   
     # Returns a url publicly accessible. If a distribution domain is set,

@@ -1,6 +1,7 @@
 module Imagery
   class Model 
-    UnknownSize = Class.new(StandardError)
+    UnknownSize   = Class.new(StandardError)
+    UndefinedRoot = Class.new(StandardError)
   
     @@directory = 'public/system'
     @@default   = { :original => ["1920x1200>"] }
@@ -90,31 +91,47 @@ module Imagery
 
       root_path(directory, namespace, key, filename(size))
     end
-
-    # Gives the absolute URI path for use in a web context.
+ 
+    # The Web module is basically here to let plugins override
+    # the url as they see fit.
     #
-    #   Photo = Class.new(Struct.new(:id))
-    #   i = Imagery.new(Photo.new(1001))
-    #   i.url(:original) == '/system/photo/1001/original.png
-    #   # => true
+    # @example
+    #   module FunkyUrls
+    #     def url(size = default_size)
+    #       super.gsub('/system', '/funky')
+    #     end
+    #   end
     #
-    #   i.file(:thumb)
-    #   # raise Imagery::Model::UnknownSize
-    #
-    #   i.sizes = { :thumb => ["100x100"] }
-    #   i.file(:thumb) == '/system/photo/1001/thumb.png
-    #   # => true
-    #
-    # @param [Symbol] size the size specific url.
-    # @raise [UnknownSize] if the size is not found in 
-    #                      Imagery::Model#sizes.
-    # @return [String] the absolute URI path of the size specific url e.g.
-    #                  /system/photo/1/thumb.png
-    #                  where photo is the namespace and 1 is the key.
-    def url(size = self.default_size)
-      file(size).split('public').last
+    #   class Imagery::Model
+    #     include FunkyUrls
+    #   end
+    module Web
+      # Gives the absolute URI path for use in a web context.
+      #
+      #   Photo = Class.new(Struct.new(:id))
+      #   i = Imagery.new(Photo.new(1001))
+      #   i.url(:original) == '/system/photo/1001/original.png
+      #   # => true
+      #
+      #   i.file(:thumb)
+      #   # raise Imagery::Model::UnknownSize
+      #
+      #   i.sizes = { :thumb => ["100x100"] }
+      #   i.file(:thumb) == '/system/photo/1001/thumb.png
+      #   # => true
+      #
+      # @param [Symbol] size the size specific url.
+      # @raise [UnknownSize] if the size is not found in 
+      #                      Imagery::Model#sizes.
+      # @return [String] the absolute URI path of the size specific url e.g.
+      #                  /system/photo/1/thumb.png
+      #                  where photo is the namespace and 1 is the key.
+      def url(size = self.default_size)
+        file(size).split('public').last
+      end
     end
-    
+    include Web
+      
     # This module is basically here so that plugins like Imagery::S3
     # can override #save and #delete and call super.
     module Persistence
@@ -190,11 +207,14 @@ module Imagery
     
     def root(root = defined?(ROOT_DIR) && ROOT_DIR)
       @root ||= root if root
-      @root
+      @root || raise(UndefinedRoot, "You must define Imagery::Model#root or have a ROOT_DIR constant present")
     end
    
     def root_path(*args)
       File.join(root, *args)
     end
+  
+    # Let's just assume everybody wants this functionality
+    include Missing
   end
 end

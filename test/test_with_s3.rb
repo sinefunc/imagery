@@ -8,6 +8,11 @@ class WithS3Test < Test::Unit::TestCase
     self.s3_bucket = "tmp-bucket-name"
   end
 
+  class NoBucket < Imagery::Model
+    include Imagery::Faking
+    include Imagery::S3
+  end
+
   SuperSecretPhoto = Class.new(Struct.new(:id))
   
   test "urls" do
@@ -26,6 +31,25 @@ class WithS3Test < Test::Unit::TestCase
     assert_equal s % 'thumb', imagery.url(:thumb)
     assert_equal s % 'small', imagery.url(:small)
     assert_equal s % 'large', imagery.url(:large)
+  end
+
+  test "url when no bucket" do
+    imagery = NoBucket.new(SuperSecretPhoto.new(1001))
+    imagery.sizes = {
+      :thumb => ["56x56^"],
+      :small => ["100x100^", "100x100"],
+      :large => ["200x200>", "200x200"]
+    }
+
+    assert_raise Imagery::S3::UndefinedBucket do
+      imagery.url 
+    end
+
+    begin
+      imagery.url
+    rescue Imagery::S3::UndefinedBucket => e
+      assert_equal Imagery::S3::Configs::BUCKET_ERROR_MSG, e.message
+    end
   end
 
   test "urls with a distribution domain" do

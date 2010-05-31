@@ -16,6 +16,14 @@ class TestImagery < Test::Unit::TestCase
     assert_equal '1001', Imagery.new(Photo.new(1001)).key
   end
 
+  test "root_path when root not defined" do
+    imagery = Imagery.new(Photo.new(1001))
+    
+    assert_raise Imagery::Model::UndefinedRoot do
+      imagery.file
+    end
+  end
+
   test "root_path when no ROOT_DIR" do
     imagery = Imagery.new(Photo.new(1001))
     imagery.root = '/'
@@ -119,7 +127,7 @@ class TestImagery < Test::Unit::TestCase
 
     test "when mode == :fake" do
       time = Benchmark.realtime { 
-        Imagery.faked { 
+        Imagery::Model.faked { 
           assert @imagery.save(File.open(FIXTURES + '/lake.jpg'))
         }
       }
