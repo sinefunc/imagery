@@ -44,7 +44,7 @@ module Imagery
     #   class Imagery::Model
     #     include Imagery::S3
     #
-    #     self.s3_bucket = 'bucket-name'
+    #     s3_bucket 'bucket-name'
     #   end
     #   
     #   Photo = Class.new(Struct.new(:id))
@@ -62,13 +62,13 @@ module Imagery
     #
     #   class CloudFront < Imagery::Model
     #     include Imagery::S3
-    #     self.s3_bucket = 'cloudfront'
-    #     self.s3_distribution_domain = 'assets.site.com'
+    #     s3_bucket 'cloudfront'
+    #     s3_distribution_domain 'assets.site.com'
     #   end
     #
     #   class RegularS3 < Imagery::Model
     #     include Imagery::S3
-    #     self.s3_bucket = 'cloudfront'
+    #     s3_bucket 'cloudfront'
     #   end
     #
     # @param [Symbol] size the preferred size you want for the url.

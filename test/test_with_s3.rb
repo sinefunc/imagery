@@ -5,7 +5,7 @@ class WithS3Test < Test::Unit::TestCase
     include Imagery::Faking
     include Imagery::S3
 
-    self.s3_bucket = "tmp-bucket-name"
+    s3_bucket "tmp-bucket-name"
   end
 
   class NoBucket < Imagery::Model
@@ -63,7 +63,7 @@ class WithS3Test < Test::Unit::TestCase
     
     s = 'http://assets.site.com/supersecretphoto/1001/%s.png'
     
-    WithS3.s3_distribution_domain = 'http://assets.site.com'
+    WithS3.s3_distribution_domain 'http://assets.site.com'
 
     assert_equal s % 'original', imagery.url
     assert_equal s % 'original', imagery.url(:original)

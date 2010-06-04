@@ -99,14 +99,14 @@ Then you may proceed using it.
     # For cases where we want to use S3 for some and normal filesystem for others
     class S3Photo < Imagery::Model
       include Imagery::S3
-      self.s3_bucket = 'my-bucket'
+      s3_bucket 'my-bucket'
     end
 
     # then maybe some other files are using cloudfront
     class CloudfrontPhoto < Imagery::Model
       include Imagery::S3
-      self.s3_bucket = 'my-bucket'
-      self.s3_distribution_domain = 'assets.site.com'
+      s3_bucket 'my-bucket'
+      s3_distribution_domain 'assets.site.com'
     end
 
 3. Flexibility and Extensibility
@@ -133,7 +133,7 @@ Now you can just start using it:
 
     class Imagery::Model
       include Imagery::S3
-      self.s3_bucket = 'my-bucket'
+      s3_bucket 'my-bucket'
     end
 
     i = Imagery.new(Photo.new(1001))
