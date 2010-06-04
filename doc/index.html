@@ -145,14 +145,14 @@ sudo port install ImageMagick
 <span class='comment'># For cases where we want to use S3 for some and normal filesystem for others
 </span><span class='kw'>class</span> <span class='const'>S3Photo</span> <span class='op'>&lt;</span> <span class='const'>Imagery</span><span class='op'>::</span><span class='const'>Model</span>
   <span class='id include'>include</span> <span class='const'>Imagery</span><span class='op'>::</span><span class='const'>S3</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id s3_bucket'>s3_bucket</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>my-bucket</span><span class='tstring_end'>'</span></span>
+  <span class='id s3_bucket'>s3_bucket</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>my-bucket</span><span class='tstring_end'>'</span></span>
 <span class='kw'>end</span>
 
 <span class='comment'># then maybe some other files are using cloudfront
 </span><span class='kw'>class</span> <span class='const'>CloudfrontPhoto</span> <span class='op'>&lt;</span> <span class='const'>Imagery</span><span class='op'>::</span><span class='const'>Model</span>
   <span class='id include'>include</span> <span class='const'>Imagery</span><span class='op'>::</span><span class='const'>S3</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id s3_bucket'>s3_bucket</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>my-bucket</span><span class='tstring_end'>'</span></span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id s3_distribution_domain'>s3_distribution_domain</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>assets.site.com</span><span class='tstring_end'>'</span></span>
+  <span class='id s3_bucket'>s3_bucket</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>my-bucket</span><span class='tstring_end'>'</span></span>
+  <span class='id s3_distribution_domain'>s3_distribution_domain</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>assets.site.com</span><span class='tstring_end'>'</span></span>
 <span class='kw'>end</span>
 </pre>
 
@@ -182,7 +182,7 @@ manually setting them somewhere in your appication</p>
 
 <span class='kw'>class</span> <span class='const'>Imagery</span><span class='op'>::</span><span class='const'>Model</span>
   <span class='id include'>include</span> <span class='const'>Imagery</span><span class='op'>::</span><span class='const'>S3</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id s3_bucket'>s3_bucket</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>my-bucket</span><span class='tstring_end'>'</span></span>
+  <span class='id s3_bucket'>s3_bucket</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>my-bucket</span><span class='tstring_end'>'</span></span>
 <span class='kw'>end</span>
 
 <span class='id i'>i</span> <span class='op'>=</span> <span class='const'>Imagery</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='const'>Photo</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='int'>1001</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -288,7 +288,7 @@ future version unintentionally.</li>
 <p>Copyright (c) 2010 Cyril David. See LICENSE for details.</p></div></div>
     
     <div id="footer">
-  Generated on Mon May 31 06:56:26 2010 by 
+  Generated on Fri Jun  4 15:57:28 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.4 (ruby-1.9.1).
 </div>

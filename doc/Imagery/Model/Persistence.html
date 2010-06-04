@@ -186,13 +186,13 @@ when successfully deleted.
       <pre class="lines">
 
 
-155
-156
-157
-158</pre>
+172
+173
+174
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/imagery/model.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/imagery/model.rb', line 172</span>
 
 <span class='kw'>def</span> <span class='id delete'>delete</span>
   <span class='const'>FileUtils</span><span class='period'>.</span><span class='id rm_rf'>rm_rf</span> <span class='const'>File</span><span class='period'>.</span><span class='id dirname'>dirname</span><span class='lparen'>(</span><span class='id file'>file</span><span class='rparen'>)</span>
@@ -289,17 +289,17 @@ returns when all other file operations are done.
       <pre class="lines">
 
 
-144
-145
-146
-147
-148
-149
-150
-151</pre>
+161
+162
+163
+164
+165
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/imagery/model.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'lib/imagery/model.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id save'>save</span><span class='lparen'>(</span><span class='id io'>io</span><span class='rparen'>)</span>
   <span class='const'>FileUtils</span><span class='period'>.</span><span class='id mkdir_p'>mkdir_p</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id dirname'>dirname</span><span class='lparen'>(</span><span class='id tmp'>tmp</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -319,7 +319,7 @@ returns when all other file operations are done.
 </div>
     
     <div id="footer">
-  Generated on Mon May 31 06:56:26 2010 by 
+  Generated on Fri Jun  4 15:57:28 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.4 (ruby-1.9.1).
 </div>
