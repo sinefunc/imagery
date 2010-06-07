@@ -132,6 +132,29 @@ end
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#s3_host-instance_method" title="#s3_host (instance method)">- (String) <strong>s3_host</strong>(host = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Allows you to customize the S3 host.
+</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -201,12 +224,96 @@ end
 </table>
 </div>
     
+      <div class="method_details ">
+  <p class="signature " id="s3_host-instance_method">
+  
+    - (<tt>String</tt>) <strong>s3_host</strong>(host = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Allows you to customize the S3 host. Usually happens when you use amazon S3
+EU.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>host</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the custom host you want to use instead.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the s3 host currently set.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/imagery/s3.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id s3_host'>s3_host</span><span class='lparen'>(</span><span class='id host'>host</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='ivar'>@s3_host</span> <span class='op'>=</span> <span class='id host'>host</span>  <span class='kw'>if</span> <span class='id host'>host</span>
+  <span class='ivar'>@s3_host</span> <span class='op'>||</span> <span class='const'>S3_HOST</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
     
     <div id="footer">
-  Generated on Fri Jun  4 15:57:28 2010 by 
+  Generated on Mon Jun  7 11:30:36 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.4 (ruby-1.9.1).
 </div>

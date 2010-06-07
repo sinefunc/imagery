@@ -203,15 +203,15 @@ keys.
       <pre class="lines">
 
 
-101
-102
-103
-104
-105
-106</pre>
+111
+112
+113
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/imagery/s3.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'lib/imagery/s3.rb', line 111</span>
 
 <span class='kw'>def</span> <span class='id delete'>delete</span>
   <span class='kw'>super</span>
@@ -249,21 +249,21 @@ different sizes to amazon S3.
       <pre class="lines">
 
 
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
 96
-97</pre>
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/imagery/s3.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/imagery/s3.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id save'>save</span><span class='lparen'>(</span><span class='id io'>io</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='kw'>super</span>
@@ -386,22 +386,22 @@ the size specific url.
       <pre class="lines">
 
 
-76
-77
-78
-79
-80
-81
-82</pre>
+86
+87
+88
+89
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/imagery/s3.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/imagery/s3.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='id url'>url</span><span class='lparen'>(</span><span class='id size'>size</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id default_size'>default_size</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id domain'>domain</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id s3_distribution_domain'>s3_distribution_domain</span>
     <span class='lbracket'>[</span><span class='id domain'>domain</span><span class='comma'>,</span> <span class='id namespace'>namespace</span><span class='comma'>,</span> <span class='id key'>key</span><span class='comma'>,</span> <span class='id filename'>filename</span><span class='lparen'>(</span><span class='id size'>size</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='lbracket'>[</span><span class='const'>S3_HOST</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id s3_bucket'>s3_bucket</span><span class='comma'>,</span> <span class='id namespace'>namespace</span><span class='comma'>,</span> <span class='id key'>key</span><span class='comma'>,</span> <span class='id filename'>filename</span><span class='lparen'>(</span><span class='id size'>size</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id s3_host'>s3_host</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id s3_bucket'>s3_bucket</span><span class='comma'>,</span> <span class='id namespace'>namespace</span><span class='comma'>,</span> <span class='id key'>key</span><span class='comma'>,</span> <span class='id filename'>filename</span><span class='lparen'>(</span><span class='id size'>size</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -414,7 +414,7 @@ the size specific url.
 </div>
     
     <div id="footer">
-  Generated on Fri Jun  4 15:57:28 2010 by 
+  Generated on Mon Jun  7 11:30:36 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.4 (ruby-1.9.1).
 </div>
