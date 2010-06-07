@@ -109,6 +109,13 @@ Then you may proceed using it.
       s3_distribution_domain 'assets.site.com'
     end
 
+    # some might be using S3 EU, in which case you can specify the s3_host
+    class CustomS3Host < Imagery::Model
+      include Imagery::S3
+      s3_host 'http://my.custom.host'
+      s3_bucket 'my-bucket-name'
+    end
+
 3. Flexibility and Extensibility
 --------------------------------
 ### Existing plugins: Faking and S3

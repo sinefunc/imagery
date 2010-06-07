@@ -5,7 +5,7 @@ module Imagery
     def self.included(base)
       base.extend Configs
       class << base
-        attr_writer :s3_bucket, :s3_distribution_domain
+        attr_writer :s3_bucket, :s3_distribution_domain, :s3_host
       end
     end
 
@@ -30,12 +30,22 @@ module Imagery
         @s3_distribution_domain = domain  if domain
         @s3_distribution_domain
       end
+  
+      # Allows you to customize the S3 host. Usually happens when you use
+      # amazon S3 EU.
+      #
+      # @param [String] host the custom host you want to use instead.
+      # @return [String] the s3 host currently set.
+      def s3_host(host = nil)
+        @s3_host = host  if host
+        @s3_host || S3_HOST
+      end
     end
   
     UndefinedBucket = Class.new(StandardError)
 
     S3_HOST = "http://s3.amazonaws.com"
-  
+
     # Returns a url publicly accessible. If a distribution domain is set,
     # then the url will be based on that.
     #
@@ -77,7 +87,7 @@ module Imagery
       if domain = self.class.s3_distribution_domain
         [domain, namespace, key, filename(size)].join('/')
       else
-        [S3_HOST, self.class.s3_bucket, namespace, key, filename(size)].join('/')
+        [self.class.s3_host, self.class.s3_bucket, namespace, key, filename(size)].join('/')
       end
     end
 

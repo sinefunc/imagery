@@ -13,9 +13,18 @@ class WithS3Test < Test::Unit::TestCase
     include Imagery::S3
   end
 
+  class WithS3CustomHost < Imagery::Model
+    include Imagery::Faking
+    include Imagery::S3
+
+    s3_bucket "tmp-bucket-name"
+    s3_host   "http://test.host"
+  end
+
+
   SuperSecretPhoto = Class.new(Struct.new(:id))
   
-  test "urls" do
+  test "default urls" do
     imagery = WithS3.new(SuperSecretPhoto.new(1001))
     imagery.root = '/tmp'
     imagery.sizes = {
@@ -25,6 +34,24 @@ class WithS3Test < Test::Unit::TestCase
     }
     
     s = 'http://s3.amazonaws.com/tmp-bucket-name/supersecretphoto/1001/%s.png'
+
+    assert_equal s % 'original', imagery.url
+    assert_equal s % 'original', imagery.url(:original)
+    assert_equal s % 'thumb', imagery.url(:thumb)
+    assert_equal s % 'small', imagery.url(:small)
+    assert_equal s % 'large', imagery.url(:large)
+  end
+
+  test "customized s3_host urls" do
+    imagery = WithS3CustomHost.new(SuperSecretPhoto.new(1001))
+    imagery.root = '/tmp'
+    imagery.sizes = {
+      :thumb => ["56x56^"],
+      :small => ["100x100^", "100x100"],
+      :large => ["200x200>", "200x200"]
+    }
+    
+    s = 'http://test.host/tmp-bucket-name/supersecretphoto/1001/%s.png'
 
     assert_equal s % 'original', imagery.url
     assert_equal s % 'original', imagery.url(:original)
