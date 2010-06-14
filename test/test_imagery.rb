@@ -12,6 +12,10 @@ class TestImagery < Test::Unit::TestCase
     assert_equal 'photo', Imagery.new(Photo.new(1001)).namespace
   end
 
+  test "using a Symbol as a namespace" do
+    assert_equal 'photo', Imagery.new(Photo.new(1001), 1001, :photo).namespace
+  end
+
   test "key" do
     assert_equal '1001', Imagery.new(Photo.new(1001)).key
   end

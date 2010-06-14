@@ -36,10 +36,10 @@ module Imagery
     # @param [#to_s] key typically the database ID of a model. But you may also 
     #                use anything here just as long as its unique across the
     #                namespace.
-    # @param [String] namespace used as a grouping mechanism for your images.
+    # @param [#to_s] namespace used as a grouping mechanism for your images.
     def initialize(model, key = model.id, namespace = namespace_for(model.class))
       @key          = key.to_s
-      @namespace    = namespace
+      @namespace    = namespace.to_s
       @default      = @@default
       @directory    = @@directory
       @sizes        = {}
