@@ -7,6 +7,14 @@ end
 
 class TestImagery < Test::Unit::TestCase
   Photo = Class.new(Struct.new(:id))
+  
+  test "optionally yields" do
+    imagery = Imagery.new(Photo.new(1001)) do |i|
+      i.sizes = { medium: ["50x50"] }
+    end
+
+    assert_equal({ medium: ["50x50"], original: ["1920x1200>"] }, imagery.sizes)
+  end
 
   test "namespace" do
     assert_equal 'photo', Imagery.new(Photo.new(1001)).namespace
