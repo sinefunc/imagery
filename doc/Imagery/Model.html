@@ -177,7 +177,7 @@ Returns a single key => value pair hash, defaulting to @@default.
 
   
     <span class="summary_desc"><div class='inline'><p>
-Defaulting to :original, the value used here will be the default size used
+Defaulting to :original, the value used here will be the default  size used
 when calling Imagery::Model#url and Imagery::Model#file.
 </p>
 </div></span>
@@ -230,7 +230,7 @@ Returns the directory used which defaults to public/system.
 
   
     <span class="summary_desc"><div class='inline'><p>
-This is typically the database ID, you may also use something like a GUID
+This is typically the database ID, you may also use something  like a GUID
 for it, the sky&#8217;s the limit.
 </p>
 </div></span>
@@ -423,7 +423,7 @@ any ruby object
       
         &mdash;
         <div class='inline'><p>
-typically the database ID of a model. But you may also use anything here
+typically the database ID of a model. But you may also  use anything here
 just as long as its unique across the namespace.
 </p>
 </div>
@@ -432,7 +432,7 @@ just as long as its unique across the namespace.
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt>#to_s</tt>)</span>
       
       
         <span class='name'>namespace</span>
@@ -471,7 +471,7 @@ used as a grouping mechanism for your images.
 
 <span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='id model'>model</span><span class='comma'>,</span> <span class='id key'>key</span> <span class='op'>=</span> <span class='id model'>model</span><span class='period'>.</span><span class='id id'>id</span><span class='comma'>,</span> <span class='id namespace'>namespace</span> <span class='op'>=</span> <span class='id namespace_for'>namespace_for</span><span class='lparen'>(</span><span class='id model'>model</span><span class='period'>.</span><span class='id class'>class</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='ivar'>@key</span>          <span class='op'>=</span> <span class='id key'>key</span><span class='period'>.</span><span class='id to_s'>to_s</span>
-  <span class='ivar'>@namespace</span>    <span class='op'>=</span> <span class='id namespace'>namespace</span>
+  <span class='ivar'>@namespace</span>    <span class='op'>=</span> <span class='id namespace'>namespace</span><span class='period'>.</span><span class='id to_s'>to_s</span>
   <span class='ivar'>@default</span>      <span class='op'>=</span> <span class='cvar'>@@default</span>
   <span class='ivar'>@directory</span>    <span class='op'>=</span> <span class='cvar'>@@directory</span>
   <span class='ivar'>@sizes</span>        <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -542,7 +542,7 @@ Returns a single key => value pair hash, defaulting to @@default.
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Defaulting to :original, the value used here will be the default size used
+Defaulting to :original, the value used here will be the default  size used
 when calling Imagery::Model#url and Imagery::Model#file.
 </p>
 
@@ -627,7 +627,7 @@ Returns the directory used which defaults to public/system.
 </p><div class="docstring">
   <div class="discussion">
     <p>
-This is typically the database ID, you may also use something like a GUID
+This is typically the database ID, you may also use something  like a GUID
 for it, the sky&#8217;s the limit.
 </p>
 
@@ -876,7 +876,7 @@ namespace and 1 is the key.
       
         &mdash;
         <div class='inline'><p>
-if the size is not found in Imagery::Model#sizes.
+if the size is not found in  Imagery::Model#sizes.
 </p>
 </div>
       
@@ -914,9 +914,9 @@ if the size is not found in Imagery::Model#sizes.
 </div>
     
     <div id="footer">
-  Generated on Mon Jun  7 11:30:36 2010 by 
+  Generated on Wed Jun 30 01:51:02 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.5.4 (ruby-1.9.1).
+  0.5.4 (ruby-1.9.2).
 </div>
 
   </body>
