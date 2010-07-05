@@ -2,7 +2,7 @@ require 'escape'
 require 'fileutils'
 
 module Imagery
-  VERSION = "0.0.5"
+  VERSION = "0.0.6"
   
   autoload :Model,   "imagery/model"
   autoload :Faking,  "imagery/faking"
